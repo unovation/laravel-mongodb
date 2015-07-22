@@ -376,8 +376,9 @@ class Builder extends BaseBuilder {
      */
     public function orderBy($column, $direction = 'asc')
     {
-        $direction = (strtolower($direction) == 'asc' ? 1 : -1);
-
+        if (!is_array($direction)) {
+           $direction = (strtolower($direction) == 'asc' ? 1 : -1);
+        }
         if ($column == 'natural')
         {
             $this->orders['$natural'] = $direction;
